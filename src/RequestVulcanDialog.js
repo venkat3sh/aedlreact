@@ -288,7 +288,9 @@ class RequestVulcanDialog extends React.Component {
     return fetch(url, {
         method: 'post',
         headers: {
-        'Content-Type': 'application/json'
+        'Access-Control-Allow-Origin' : "*", // Required for CORS support to work
+        "Access-Control-Allow-Methods": "OPTIONS,POST,GET",
+        "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept, Authorization"
         },
         body: JSON.stringify(newData)
     })
