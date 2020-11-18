@@ -36,9 +36,9 @@ class RequestVulcanDialog extends React.Component {
       error: false,
       errorMessage: "",
       submitError: "",
-      sor_cds: [],
+      sor_cds: ["SOR Code 1", "SOR Code 2"],
       selected_sor_cd: "",
-      domain_cds: [],
+      domain_cds: ["Domain Code 1", "Domain Code 2"],
       selected_domain_cd: "",
       environment: "sit",
       selected_prcsng_type: "ingest",
@@ -49,81 +49,79 @@ class RequestVulcanDialog extends React.Component {
       selected_job_type: "glue",
       errorInvalidJSON: "",
       rqstr_id: "",
-      ownrshp_team: "",
+      ownrshp_team: "Team",
       dropdown_options: {
-        teams: [],
-        destn_type_descs: [],
-        db_type_descs: [],
-        ctlg_nms: [],
-        trgt_tbl_rfrsh_types: [],
-        actv_flags: []
+        teams: ["Team 1", "Team 2"],
+        destn_type_descs: ["Dest Type Desc 1", "Dest Type Desc 2"],
+        db_type_descs: ["DB Type Desc 1", "DB Type Desc 2"],
+        ctlg_nms: ["Catalog Name 1", "Catalog Name 2"],
+        trgt_tbl_rfrsh_types: ["Target Table 1", "Target Table 2"],
+        actv_flags: ["N", "Y"]
       }
     }
 }
 
-//   componentDidMount() {
-//         let editedHeaders = this.props.headers.filter(header => header !== "tableData")
-//         editedHeaders.forEach(header =>
-//             this.setState({
-//                 [header]: ""
-//             })      
-//         )
+  componentDidMount() {
+        // let editedHeaders = this.props.headers.filter(header => header !== "tableData")
+        // editedHeaders.forEach(header =>
+        //     this.setState({
+        //         [header]: ""
+        //     })      
+        // )
 
-//         if (this.props.currentEnv === 'SIT'){
-//             this.setState({
-//                 destn_s3_bkt_nm: "antm-481935479534-ssm-sit-filetransfer"
-//             })
-//         } else if (this.props.currentEnv === 'DEV'){
-//             this.setState({
-//                 destn_s3_bkt_nm: "antm-481935479534-ssm-dev-filetransfer"
-//             })
-//         }
+        // if (this.props.currentEnv === 'SIT'){
+        //     this.setState({
+        //         destn_s3_bkt_nm: "antm-481935479534-ssm-sit-filetransfer"
+        //     })
+        // } else if (this.props.currentEnv === 'DEV'){
+        //     this.setState({
+        //         destn_s3_bkt_nm: "antm-481935479534-ssm-dev-filetransfer"
+        //     })
+        // }
 
-//         this.setState({
-//             src_clmn_list_file_txt: "na",
-//             delta_tbl_clmn_lst_txt: "na",
-//             domain_cd: "",
-//             sor_cd: "",
-//             del_tbl_clmn_lst_txt: "na",
-//             hdfs_delta_tbl_path_txt: "na",
-//             hdfs_del_tbl_path_txt: "na",
-//             tpt_instances_cnt: 0,
-//         })
+        this.setState({
+            src_clmn_list_file_txt: "na",
+            delta_tbl_clmn_lst_txt: "na",
+            domain_cd: "Domain Code 1",
+            sor_cd: "SOR Code 1",
+            del_tbl_clmn_lst_txt: "na",
+            hdfs_delta_tbl_path_txt: "na",
+            hdfs_del_tbl_path_txt: "na",
+            tpt_instances_cnt: 0,
+        })
 
-//         let url = `${baseURL}sor-cds?env=DEV`
-//         fetch(url)
-//         .then(response => response.json())
-//         .then(result => {
-//             this.setState({
-//                 sor_cds: result
-//             })
-//         })
-//         url = `${baseURL}domain-cds?env=DEV`
-//         fetch(url)
-//         .then(response => response.json())
-//         .then(result => {
-//             this.setState({
-//                 domain_cds: result
-//             })
-//         })
+        let url = 'https://3yxyhh7j6a.execute-api.us-east-2.amazonaws.com/prod'
+        // fetch(url)
+        // .then(response => response.json())
+        // .then(result => {
+        //     this.setState({
+        //         sor_cds: result
+        //     })
+        // })
+        // fetch(url)
+        // .then(response => response.json())
+        // .then(result => {
+        //     this.setState({
+        //         domain_cds: result
+        //     })
+        // })
 
-//         url = `${baseURL}processing/return-job-params?env=DEV`
-//         fetch(url)
-//         .then(response => response.json())
-//         .then(res => {
-//             console.log(res)
-//             this.setState({
-//                 dropdown_options: {
-//                     teams: res.ownrshp_team,
-//                     db_type_descs: res.db_type_desc,
-//                     ctlg_nms: res.ctlg_nm,
-//                     trgt_tbl_rfrsh_types: res.trgt_tbl_rfrsh_type,
-//                     destn_type_descs: res.destn_type_desc,
-//                     actv_flags: res.actv_flag
-//                 }
-//             })
-//         })
-//     }
+        fetch(url)
+        .then(response => response.json())
+        .then(res => {
+            console.log(res)
+            // this.setState({
+            //     dropdown_options: {
+            //         teams: res.ownrshp_team,
+            //         db_type_descs: res.db_type_desc,
+            //         ctlg_nms: res.ctlg_nm,
+            //         trgt_tbl_rfrsh_types: res.trgt_tbl_rfrsh_type,
+            //         destn_type_descs: res.destn_type_desc,
+            //         actv_flags: res.actv_flag
+            //     }
+            // })
+        })
+    }
 
   handleClose = () => {
     this.setState({
@@ -284,13 +282,13 @@ class RequestVulcanDialog extends React.Component {
         ownrshp_team: this.state.ownrshp_team
     }
 
-    // let url = 'http://22.174.139.218/api/processing/add-record'
+    console.log(newData);
+    let url = 'https://3yxyhh7j6a.execute-api.us-east-2.amazonaws.com/prod'
     // let url = `${baseURL}vulcan/metadata-request?env=${this.props.currentEnv}`
-    return fetch('url', {
+    return fetch(url, {
         method: 'post',
         headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${token}`
+        'Content-Type': 'application/json'
         },
         body: JSON.stringify(newData)
     })
@@ -382,8 +380,8 @@ class RequestVulcanDialog extends React.Component {
                 className="select-empty" 
                 labelWidth={100}>
                 {this.state.domain_cds.map(domainCD => 
-                    <MenuItem value={domainCD.domain_cd.String}>
-                        <em>{domainCD.domain_cd.String}</em>
+                    <MenuItem value={domainCD}>
+                        <em>{domainCD}</em>
                     </MenuItem>
                 )}
                 </Select>
@@ -399,8 +397,8 @@ class RequestVulcanDialog extends React.Component {
                 className="select-empty" 
                 labelWidth={100}>
                 {this.state.sor_cds.map(sorCD => 
-                    <MenuItem value={sorCD.sor_cd.String} key={sorCD.sor_id.String}>
-                        <em>{sorCD.sor_cd.String}</em>
+                    <MenuItem value={sorCD}>
+                        <em>{sorCD}</em>
                     </MenuItem>
                 )}
                 </Select>
@@ -433,7 +431,7 @@ class RequestVulcanDialog extends React.Component {
             label="schma_nm"
             type="schma_nm"
             id="schma_nm"
-            value={this.state.schma_nm}
+            value="Schema Name"//{this.state.schma_nm}
             onChange={this.handleChanges}
             error={this.state.schma_nm === ""}
             helperText={this.state.schma_nm === "" ? "Must have a schema name" : ""}
@@ -448,7 +446,7 @@ class RequestVulcanDialog extends React.Component {
             label="src_tbl_nm"
             type="src_tbl_nm"
             id="src_tbl_nm"
-            value={this.state.src_tbl_nm}
+            value="Source Table Name"//{this.state.src_tbl_nm}
             onChange={this.handleChanges}
             error={this.state.src_tbl_nm === ""}
             helperText={this.state.src_tbl_nm === "" ? "Must have a source table name" : ""}
@@ -463,7 +461,7 @@ class RequestVulcanDialog extends React.Component {
             label="src_clmn_list_file_txt"
             type="src_clmn_list_file_txt"
             id="src_clmn_list_file_txt"
-            value={this.state.src_clmn_list_file_txt}
+            value="Columns List"//{this.state.src_clmn_list_file_txt}
             onChange={this.handleChanges}
             />
             <TextField
@@ -476,7 +474,7 @@ class RequestVulcanDialog extends React.Component {
             label="delta_tbl_nm"
             type="delta_tbl_nm"
             id="delta_tbl_nm"
-            value={this.state.delta_tbl_nm}
+            value="Delta Table Name"//{this.state.delta_tbl_nm}
             onChange={this.handleChanges}
             />
              <TextField
@@ -489,7 +487,7 @@ class RequestVulcanDialog extends React.Component {
             label="delta_tbl_clmn_lst_txt"
             type="delta_tbl_clmn_lst_txt"
             id="delta_tbl_clmn_lst_txt"
-            value={this.state.delta_tbl_clmn_lst_txt}
+            value="Delta Column list"//{this.state.delta_tbl_clmn_lst_txt}
             onChange={this.handleChanges}
             />
             <TextField
@@ -505,7 +503,7 @@ class RequestVulcanDialog extends React.Component {
                 del_tbl_nm: this.getDelTblNm(),
                 del_tbl_nm_focused: true
             }) : null }
-            value={this.state.del_tbl_nm_focused ? this.state.del_tbl_nm : this.getDelTblNm()}
+            value="Delta Table Name"//{this.state.del_tbl_nm_focused ? this.state.del_tbl_nm : this.getDelTblNm()}
             onChange={this.handleChanges}
             error={this.state.error}
             helperText={this.state.errorMessage}
