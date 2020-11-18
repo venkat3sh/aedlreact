@@ -283,14 +283,12 @@ class RequestVulcanDialog extends React.Component {
     }
 
     console.log(newData);
-    let url = 'https://3yxyhh7j6a.execute-api.us-east-2.amazonaws.com/prod/firstresp'
+    let url = 'https://3yxyhh7j6a.execute-api.us-east-2.amazonaws.com/prod'
     // let url = `${baseURL}vulcan/metadata-request?env=${this.props.currentEnv}`
     return fetch(url, {
         method: 'post',
         headers: {
-        'Access-Control-Allow-Origin' : "*", // Required for CORS support to work
-        "Access-Control-Allow-Methods": "OPTIONS,POST,GET",
-        "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept, Authorization"
+        'Content-Type': 'application/json'
         },
         body: JSON.stringify(newData)
     })
