@@ -36,7 +36,7 @@ class RequestVulcanDialog extends React.Component {
       error: false,
       errorMessage: "",
       submitError: "",
-      sor_cds: ["SOR Code 1", "SOR Code 2"],
+      sor_cds: ["naic", "edl", "edw", "cdl", "cii"],
       selected_sor_cd: "",
       domain_cds: ["Domain Code 1", "Domain Code 2"],
       selected_domain_cd: "",
@@ -52,10 +52,10 @@ class RequestVulcanDialog extends React.Component {
       ownrshp_team: "Team",
       dropdown_options: {
         teams: ["Team 1", "Team 2"],
-        destn_type_descs: ["Dest Type Desc 1", "Dest Type Desc 2"],
-        db_type_descs: ["DB Type Desc 1", "DB Type Desc 2"],
+        destn_type_descs: ["s3", "hdfs"],
+        db_type_descs: ["Teradata", "Hive"],
         ctlg_nms: ["Catalog Name 1", "Catalog Name 2"],
-        trgt_tbl_rfrsh_types: ["Target Table 1", "Target Table 2"],
+        trgt_tbl_rfrsh_types: ["full", "AWS_FULL_REFRESH"],
         actv_flags: ["N", "Y"]
       }
     }
@@ -88,6 +88,8 @@ class RequestVulcanDialog extends React.Component {
             hdfs_delta_tbl_path_txt: "na",
             hdfs_del_tbl_path_txt: "na",
             tpt_instances_cnt: 0,
+            destn_s3_bkt_nm: "antm-481935479534-ssm-dev-filetransfer",
+            schma_nm: "Schema Name"
         })
 
         let url = 'https://3yxyhh7j6a.execute-api.us-east-2.amazonaws.com/prod'
@@ -283,7 +285,7 @@ class RequestVulcanDialog extends React.Component {
     }
 
     console.log(newData);
-    let url = 'https://3yxyhh7j6a.execute-api.us-east-2.amazonaws.com/prod'
+    let url = 'https://3yxyhh7j6a.execute-api.us-east-2.amazonaws.com/prod/firstresp'
     // let url = `${baseURL}vulcan/metadata-request?env=${this.props.currentEnv}`
     return fetch(url, {
         method: 'post',
@@ -300,11 +302,20 @@ class RequestVulcanDialog extends React.Component {
                 submitError: result.error_msg
             })
         } else {
-            // this.props.updateOnInsert(result)
+            this.updateOnInsert(result)
         }
     }).catch(err => {
         console.log(err)
     })
+  }
+
+  updateOnInsert = (result) => {
+    this.setState({
+      snackbarIsOpen: true,
+      responseMessage: result,
+      openRequestDialog: false
+    })
+    // this.getDataFromApi();
   }
 
   render() {
@@ -431,7 +442,7 @@ class RequestVulcanDialog extends React.Component {
             label="schma_nm"
             type="schma_nm"
             id="schma_nm"
-            value="Schema Name"//{this.state.schma_nm}
+            value={this.state.schma_nm}
             onChange={this.handleChanges}
             error={this.state.schma_nm === ""}
             helperText={this.state.schma_nm === "" ? "Must have a schema name" : ""}
