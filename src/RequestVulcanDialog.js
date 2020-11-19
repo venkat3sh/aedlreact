@@ -16,6 +16,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
+import SuccessSnackbar from './SuccessSnackbar';
 // Component Imports
 // import InsertRecordButton from '../utils/InsertRecordButton'
 // import ErrorAlert from '../utils/ErrorAlert'
@@ -194,6 +195,16 @@ class RequestVulcanDialog extends React.Component {
         }}
   }
 
+  handleSnackbarClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    this.setState({
+      snackbarIsOpen: false
+    })
+  };
+  
   getInbndKeyValue = () => {
     // console.log("firing inbound key value fx")
     let valueString = "inbound/"+ this.state.domain_cd + "/" + this.state.sor_cd + "/" + this.state.trgt_tbl_nm
@@ -274,7 +285,7 @@ class RequestVulcanDialog extends React.Component {
         del_tbl_clm_lst_txt: this.state.del_tbl_clm_lst_txt,
         hdfs_delta_tbl_path_txt: this.state.hdfs_delta_tbl_path_txt,
         hdfs_del_tbl_path_txt: this.state.hdfs_del_tbl_path_txt,
-        destn_s3_obj_key,
+        destn_s3_obj_key: this.state.destn_s3_obj_key,
         destn_s3_bkt_nm: this.state.destn_s3_bkt_nm,
         destn_type_desc: this.state.destn_type_desc,
         tpt_instances_cnt: this.state.tpt_instances_cnt,
@@ -677,6 +688,11 @@ class RequestVulcanDialog extends React.Component {
                         Insert
                     </Button>
                 </DialogActions>
+                <SuccessSnackbar 
+                      open={this.state.snackbarIsOpen} 
+                      handleSnackbarClose={this.handleSnackbarClose} 
+                      responseMessage={this.state.responseMessage}
+                      />
             </Dialog>
         </>
         );
