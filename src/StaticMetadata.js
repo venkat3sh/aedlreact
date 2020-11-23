@@ -1,34 +1,18 @@
 import React from "react";
 // Material UI Imports
 import Button from "@material-ui/core/Button";
-import Dialog from "@material-ui/core/Dialog";
-import DialogActions from "@material-ui/core/DialogActions";
-import DialogContent from "@material-ui/core/DialogContent";
-import DialogContentText from "@material-ui/core/DialogContentText";
 import TextField from "@material-ui/core/TextField";
 import Avatar from "@material-ui/core/Avatar";
-import IconButton from '@material-ui/core/IconButton';
-import AddIcon from '@material-ui/icons/Add';
 import NoteAddTwoTone from '@material-ui/icons/NoteAddTwoTone';
-import Tooltip from '@material-ui/core/Tooltip';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import SuccessSnackbar from './SuccessSnackbar';
-// Component Imports
-// import InsertRecordButton from '../utils/InsertRecordButton'
-// import ErrorAlert from '../utils/ErrorAlert'
-// import JobID from '../config/JobID'
-// import axios from 'axios'
-// import { baseURL } from '../utils/BaseURL'
 
-// import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
-// React Router Import
-// import {withRouter} from 'react-router';
 
-class RequestVulcanDialog extends React.Component {
+class StaticMetadata extends React.Component {
   constructor() {
     super();
     this.state = {
@@ -38,9 +22,7 @@ class RequestVulcanDialog extends React.Component {
       errorMessage: "",
       submitError: "",
       sor_cds: ["naic", "edl", "edw", "cdl", "cii"],
-      selected_sor_cd: "",
       domain_cds: ["Domain Code 1", "Domain Code 2"],
-      selected_domain_cd: "",
       environment: "sit",
       selected_prcsng_type: "ingest",
       selected_trgt_pltfrm: "redshift",
@@ -50,80 +32,29 @@ class RequestVulcanDialog extends React.Component {
       selected_job_type: "glue",
       errorInvalidJSON: "",
       rqstr_id: "",
-      ownrshp_team: "Team",
+      ownrshp_team: "Team 1",
+      db_type_desc: "Hive",
+      trgt_tbl_rfrsh_type: "full",
+      sor_cd: "cii",
+      destn_type_desc: "s3",
       dropdown_options: {
         teams: ["Team 1", "Team 2"],
         destn_type_descs: ["s3", "hdfs"],
         db_type_descs: ["Teradata", "Hive"],
-        ctlg_nms: ["Catalog Name 1", "Catalog Name 2"],
         trgt_tbl_rfrsh_types: ["full", "AWS_FULL_REFRESH"],
-        actv_flags: ["N", "Y"]
       }
     }
 }
 
-  componentDidMount() {
-        // let editedHeaders = this.props.headers.filter(header => header !== "tableData")
-        // editedHeaders.forEach(header =>
-        //     this.setState({
-        //         [header]: ""
-        //     })      
-        // )
-
-        // if (this.props.currentEnv === 'SIT'){
-        //     this.setState({
-        //         destn_s3_bkt_nm: "antm-481935479534-ssm-sit-filetransfer"
-        //     })
-        // } else if (this.props.currentEnv === 'DEV'){
-        //     this.setState({
-        //         destn_s3_bkt_nm: "antm-481935479534-ssm-dev-filetransfer"
-        //     })
-        // }
-
+  componentDidMount() {    
         this.setState({
-            src_clmn_list_file_txt: "na",
-            delta_tbl_clmn_lst_txt: "na",
-            domain_cd: "Domain Code 1",
-            sor_cd: "SOR Code 1",
-            del_tbl_clmn_lst_txt: "na",
+            sor_cd: "cii",
             hdfs_delta_tbl_path_txt: "na",
             hdfs_del_tbl_path_txt: "na",
             tpt_instances_cnt: 0,
             destn_s3_bkt_nm: "antm-481935479534-ssm-dev-filetransfer",
             schma_nm: "Schema Name"
-        })
-
-        let url = 'https://3yxyhh7j6a.execute-api.us-east-2.amazonaws.com/prod'
-        // fetch(url)
-        // .then(response => response.json())
-        // .then(result => {
-        //     this.setState({
-        //         sor_cds: result
-        //     })
-        // })
-        // fetch(url)
-        // .then(response => response.json())
-        // .then(result => {
-        //     this.setState({
-        //         domain_cds: result
-        //     })
-        // })
-
-        fetch(url)
-        .then(response => response.json())
-        .then(res => {
-            console.log(res)
-            // this.setState({
-            //     dropdown_options: {
-            //         teams: res.ownrshp_team,
-            //         db_type_descs: res.db_type_desc,
-            //         ctlg_nms: res.ctlg_nm,
-            //         trgt_tbl_rfrsh_types: res.trgt_tbl_rfrsh_type,
-            //         destn_type_descs: res.destn_type_desc,
-            //         actv_flags: res.actv_flag
-            //     }
-            // })
-        })
+        })        
     }
 
   handleClose = () => {
@@ -268,21 +199,13 @@ class RequestVulcanDialog extends React.Component {
   }
 
   submitRecord = () => {
-    let token = localStorage.getItem('AEDLDashboardToken')
 
     let destn_s3_obj_key = this.state.destn_s3_obj_key_focused === true ? destn_s3_obj_key : this.getDestnS3ObjKey()
 
     let newData = {
         db_type_desc: this.state.db_type_desc,
         src_sys_nm: this.state.sor_cd,
-        ctlg_nm: this.state.ctlg_nm,
-        schma_nm: this.state.schma_nm,
-        src_tbl_nm: this.state.src_tbl_nm,
-        src_clmn_list_file_txt: this.state.src_clmn_list_file_txt,
-        delta_tbl_nm: this.state.delta_tbl_nm,
-        delta_tbl_clmn_lst_txt: this.state.delta_tbl_clmn_lst_txt,
-        del_tbl_nm: this.state.delta_tbl_nm,
-        del_tbl_clm_lst_txt: this.state.del_tbl_clm_lst_txt,
+        schma_nm: this.state.schma_nm,        
         hdfs_delta_tbl_path_txt: this.state.hdfs_delta_tbl_path_txt,
         hdfs_del_tbl_path_txt: this.state.hdfs_del_tbl_path_txt,
         destn_s3_obj_key: this.state.destn_s3_obj_key,
@@ -290,14 +213,12 @@ class RequestVulcanDialog extends React.Component {
         destn_type_desc: this.state.destn_type_desc,
         tpt_instances_cnt: this.state.tpt_instances_cnt,
         trgt_tbl_rfrsh_type: this.state.trgt_tbl_rfrsh_type,
-        actv_flag: "n",
         rqstr_id: this.state.rqstr_id,
         ownrshp_team: this.state.ownrshp_team
     }
 
     console.log(newData);
-    let url = 'https://3yxyhh7j6a.execute-api.us-east-2.amazonaws.com/prod/firstresp'
-    // let url = `${baseURL}vulcan/metadata-request?env=${this.props.currentEnv}`
+    let url = 'https://972nit0yw1.execute-api.us-east-2.amazonaws.com/prod/vlcnstaticmetadata'
     return fetch(url, {
         method: 'post',
         headers: {
@@ -329,19 +250,7 @@ class RequestVulcanDialog extends React.Component {
     // this.getDataFromApi();
   }
 
-  render() {
-    // const { open } = this.props
-    // let { headers } = this.props
-    // headers = headers.filter(header => {
-    //     if (header === "tableData") {
-    //         return false
-    //     } else if (header === "sor_cd") {
-    //         return false
-    //     } else if (header === "domain_cd") {
-    //         return false
-    //     }
-    //     return true
-    // })
+  render() {    
     let FormFields = 
         <>
             <TextField
@@ -392,23 +301,6 @@ class RequestVulcanDialog extends React.Component {
                 </Select>
                 {this.state.db_type_desc === "" ? (<FormHelperText>Must select a db_type_desc</FormHelperText>) : null}
             </FormControl>
-            <FormControl className="form-control" variant="outlined" margin="normal" error={this.state.domain_cd === ""}>
-                <InputLabel id="demo-simple-select-label">domain_cd</InputLabel>
-                <Select 
-                name="domain_cd"
-                value={this.state.domain_cd}
-                onChange={this.handleChanges} 
-                displayEmpty 
-                className="select-empty" 
-                labelWidth={100}>
-                {this.state.domain_cds.map(domainCD => 
-                    <MenuItem value={domainCD}>
-                        <em>{domainCD}</em>
-                    </MenuItem>
-                )}
-                </Select>
-                {this.state.domain_cd === "" ? (<FormHelperText>Must select a domain_cd</FormHelperText>) : null}
-            </FormControl>
             <FormControl className="form-control" margin="normal" variant="outlined" error={this.state.sor_cd === ""}>
                 <InputLabel id="demo-simple-select-label">sor_cd</InputLabel>
                 <Select 
@@ -425,24 +317,7 @@ class RequestVulcanDialog extends React.Component {
                 )}
                 </Select>
                 {this.state.sor_cd === "" ? (<FormHelperText>Must select a sor_cd</FormHelperText>) : null}
-            </FormControl>
-            <FormControl className="form-control" margin="normal" variant="outlined" error={this.state.ctlg_nm === ""}>
-                <InputLabel id="demo-simple-select-label">ctlg_nm</InputLabel>
-                <Select 
-                name="ctlg_nm"
-                value={this.state.ctlg_nm} 
-                onChange={this.handleChanges} 
-                displayEmpty 
-                className="select-empty" 
-                labelWidth={100}>
-                {this.state.dropdown_options.ctlg_nms.map(item => 
-                    <MenuItem value={item} key={item}>
-                        <em>{item}</em>
-                    </MenuItem>
-                )}
-                </Select>
-                {this.state.ctlg_nm === "" ? (<FormHelperText>Must select a ctlg_nm</FormHelperText>) : null}
-            </FormControl>
+            </FormControl>                       
             <TextField
             variant="outlined"
             margin="normal"
@@ -457,92 +332,7 @@ class RequestVulcanDialog extends React.Component {
             onChange={this.handleChanges}
             error={this.state.schma_nm === ""}
             helperText={this.state.schma_nm === "" ? "Must have a schema name" : ""}
-            />
-            <TextField
-            variant="outlined"
-            margin="normal"
-            fullWidth
-            required
-            disabled={false}
-            name="src_tbl_nm"
-            label="src_tbl_nm"
-            type="src_tbl_nm"
-            id="src_tbl_nm"
-            value="Source Table Name"//{this.state.src_tbl_nm}
-            onChange={this.handleChanges}
-            error={this.state.src_tbl_nm === ""}
-            helperText={this.state.src_tbl_nm === "" ? "Must have a source table name" : ""}
-            />
-           <TextField
-            variant="outlined"
-            margin="normal"
-            fullWidth
-            required
-            disabled={false}
-            name="src_clmn_list_file_txt"
-            label="src_clmn_list_file_txt"
-            type="src_clmn_list_file_txt"
-            id="src_clmn_list_file_txt"
-            value="Columns List"//{this.state.src_clmn_list_file_txt}
-            onChange={this.handleChanges}
-            />
-            <TextField
-            variant="outlined"
-            margin="normal"
-            fullWidth
-            required
-            disabled={false}
-            name="delta_tbl_nm"
-            label="delta_tbl_nm"
-            type="delta_tbl_nm"
-            id="delta_tbl_nm"
-            value="Delta Table Name"//{this.state.delta_tbl_nm}
-            onChange={this.handleChanges}
-            />
-             <TextField
-            variant="outlined"
-            margin="normal"
-            fullWidth
-            required
-            disabled={false}
-            name="delta_tbl_clmn_lst_txt"
-            label="delta_tbl_clmn_lst_txt"
-            type="delta_tbl_clmn_lst_txt"
-            id="delta_tbl_clmn_lst_txt"
-            value="Delta Column list"//{this.state.delta_tbl_clmn_lst_txt}
-            onChange={this.handleChanges}
-            />
-            <TextField
-            variant="outlined"
-            margin="normal"
-            fullWidth
-            disabled={false}
-            name="del_tbl_nm"
-            label="del_tbl_nm"
-            type="del_tbl_nm"
-            id="del_tbl_nm"
-            onFocus={ !this.state.del_tbl_nm_focused ? () => this.setState({
-                del_tbl_nm: this.getDelTblNm(),
-                del_tbl_nm_focused: true
-            }) : null }
-            value="Delta Table Name"//{this.state.del_tbl_nm_focused ? this.state.del_tbl_nm : this.getDelTblNm()}
-            onChange={this.handleChanges}
-            error={this.state.error}
-            helperText={this.state.errorMessage}
-            />
-            <TextField
-            variant="outlined"
-            margin="normal"
-            fullWidth
-            required
-            disabled={false}
-            name="del_tbl_clmn_lst_txt"
-            label="del_tbl_clmn_lst_txt"
-            type="del_tbl_clmn_lst_txt"
-            id="del_tbl_clmn_lst_txt"
-            value={this.state.del_tbl_clmn_lst_txt}
-            onChange={this.handleChanges}
-            />
+            />            
              <TextField
             variant="outlined"
             margin="normal"
@@ -649,13 +439,7 @@ class RequestVulcanDialog extends React.Component {
             </FormControl>  
         </>  
     return (
-        <>
-            <Dialog
-                open="false"
-                onClose={this.handleClose}
-                aria-labelledby="form-dialog-title"
-                maxWidth="md"
-            >
+        <>            
                 <div
                 style={{
                     display: "flex",
@@ -667,36 +451,27 @@ class RequestVulcanDialog extends React.Component {
                         <NoteAddTwoTone />
                     </Avatar>
                 </div>
-                {/* <DialogTitle id="form-dialog-title">Login</DialogTitle> */}
-                <DialogContent>
-                    <DialogContentText>
-                        Create your new record.
-                    </DialogContentText>
-                    {FormFields}
-                </DialogContent>
                 
-                <DialogActions>
+                {FormFields}
                     <Button onClick={this.handleClose} color="primary">
                         Cancel
                     </Button>
                     <Button
                     variant="contained"
                     color="primary"
-                    disabled={!this.state.sor_cd || !this.state.domain_cd || !this.state.ownrshp_team || !this.state.rqstr_id}
+                    disabled={!this.state.schma_nm || !this.state.ownrshp_team || !this.state.rqstr_id}
                     onClick={this.submitRecord}
                     >
                         Insert
                     </Button>
-                </DialogActions>
                 <SuccessSnackbar 
                       open={this.state.snackbarIsOpen} 
                       handleSnackbarClose={this.handleSnackbarClose} 
                       responseMessage={this.state.responseMessage}
                       />
-            </Dialog>
         </>
         );
   }        
 }
 
-export default RequestVulcanDialog 
+export default StaticMetadata 
