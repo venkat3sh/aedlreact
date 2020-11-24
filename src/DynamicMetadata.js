@@ -370,7 +370,7 @@ class DynamicMetadata extends React.Component {
                     <Button
                     variant="contained"
                     color="primary"
-                    disabled={!this.state.src_tbl_nm || !this.state.sor_cd || !this.state.domain_cd || !this.state.ownrshp_team || !this.state.rqstr_id}
+                    disabled={!this.state.sor_cd || !this.state.domain_cd || !this.state.ownrshp_team || !this.state.rqstr_id}
                     onClick={this.submitRecord}
                     >
                         Insert
