@@ -22,7 +22,7 @@ class DynamicMetadata extends React.Component {
       submitError: "",
       sor_cds: ["naic", "edl", "edw", "cdl", "cii"],
       selected_sor_cd: "",
-      domain_cds: ["Domain Code 1", "Domain Code 2"],
+      domain_cds: ["clm","prod","mbr"],
       selected_domain_cd: "",
       environment: "sit",
       selected_prcsng_type: "ingest",
@@ -36,6 +36,7 @@ class DynamicMetadata extends React.Component {
       domain_cd: "Domain Code 1",
       sor_cd: "cii", 
       ownrshp_team: "Team 1",
+      src_tbl_list: "clm",
       dropdown_options: {
         teams: ["Team 1", "Team 2"],
       }
@@ -44,11 +45,11 @@ class DynamicMetadata extends React.Component {
 
   componentDidMount() {        
     this.setState({
-        src_clmn_list_file_txt: "na",
+        dsrc_clmn_list_file_txt: "na",
         delta_tbl_clmn_lst_txt: "na",
-        domain_cd: "Domain Code 1",
+        domain_cd: "prod",
         sor_cd: "cii",            
-        schma_nm: "Schema Name"
+        dschma_nm: "Schema Name"
     })        
     }
 
@@ -145,7 +146,7 @@ class DynamicMetadata extends React.Component {
 
   getDelTblNm = () => {
     // console.log("firing get del tbl name fx")
-    let valueString = this.state.src_tbl_nm + "_del"
+    let valueString = this.state.src_tbl_list + "_del"
     return valueString
   }
 
@@ -189,7 +190,7 @@ class DynamicMetadata extends React.Component {
   }
 
   getDestnS3ObjKey = () => {
-    let valueString = "inbound/"+ this.state.domain_cd + "/" + this.state.sor_cd + "/" + this.state.src_tbl_nm
+    let valueString = "inbound/"+ this.state.domain_cd + "/" + this.state.sor_cd + "/" + this.state.src_tbl_list
     return valueString
   }
 
@@ -197,9 +198,9 @@ class DynamicMetadata extends React.Component {
 
     let newData = {
         src_sys_nm: this.state.sor_cd,
-        schma_nm: this.state.schma_nm,
-        src_tbl_nm: this.state.src_tbl_nm,
-        src_clmn_list_file_txt: this.state.src_clmn_list_file_txt,
+        schma_nm: this.state.dschma_nm,
+        src_tbl_list: this.state.src_tbl_list,
+        src_clmn_list_file_txt: this.state.dsrc_clmn_list_file_txt,
         delta_tbl_clmn_lst_txt: this.state.delta_tbl_clmn_lst_txt,
         rqstr_id: this.state.rqstr_id,
         ownrshp_team: this.state.ownrshp_team
@@ -249,6 +250,7 @@ class DynamicMetadata extends React.Component {
             disabled={false}
             name="rqstr_id"
             label="Anthem ID"
+            required
             type="rqstr_id"
             id="rqstr_id"
             value={this.state.rqstr_id}
@@ -306,46 +308,59 @@ class DynamicMetadata extends React.Component {
                 )}
                 </Select>
                 {this.state.sor_cd === "" ? (<FormHelperText>Must select a sor_cd</FormHelperText>) : null}
-            </FormControl>            
+            </FormControl>  
             <TextField
             variant="outlined"
             margin="normal"
             fullWidth
             required
             disabled={false}
-            name="src_tbl_nm"
-            label="src_tbl_nm"
-            type="src_tbl_nm"
-            id="src_tbl_nm"
-            value="Source Table Name"//{this.state.src_tbl_nm}
+            name="dschma_nm"
+            label="dschma_nm"
+            type="dschma_nm"
+            id="dschma_nm"
+            value={this.state.dschma_nm}
             onChange={this.handleChanges}
-            error={this.state.src_tbl_nm === ""}
-            helperText={this.state.src_tbl_nm === "" ? "Must have a source table name" : ""}
-            />
-           <TextField
+            error={this.state.dschma_nm === ""}
+            helperText={this.state.dschma_nm === "" ? "Must have a schema name" : ""}
+            />          
+            <TextField
             variant="outlined"
             margin="normal"
             fullWidth
             required
             disabled={false}
-            name="src_clmn_list_file_txt"
-            label="src_clmn_list_file_txt"
-            type="src_clmn_list_file_txt"
-            id="src_clmn_list_file_txt"
-            value="Columns List"//{this.state.src_clmn_list_file_txt}
+            name="src_tbl_list"
+            label="src_tbl_list"
+            type="src_tbl_list"
+            id="src_tbl_list"
+            value={this.state.src_tbl_list}
+            onChange={this.handleChanges}
+            error={this.state.src_tbl_list === ""}
+            helperText={this.state.src_tbl_list === "" ? "Must have a source table name" : ""}
+            />
+           <TextField
+            variant="outlined"
+            margin="normal"
+            fullWidth
+            disabled={false}
+            name="dsrc_clmn_list_file_txt"
+            label="dsrc_clmn_list_file_txt"
+            type="dsrc_clmn_list_file_txt"
+            id="dsrc_clmn_list_file_txt"
+            value={this.state.dsrc_clmn_list_file_txt}
             onChange={this.handleChanges}
             />            
              <TextField
             variant="outlined"
             margin="normal"
             fullWidth
-            required
             disabled={false}
             name="delta_tbl_clmn_lst_txt"
             label="delta_tbl_clmn_lst_txt"
             type="delta_tbl_clmn_lst_txt"
             id="delta_tbl_clmn_lst_txt"
-            value="Delta Column list"//{this.state.delta_tbl_clmn_lst_txt}
+            value={this.state.delta_tbl_clmn_lst_txt}
             onChange={this.handleChanges}
             />             
         </>  

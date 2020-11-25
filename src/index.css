@@ -1,13 +1,279 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+.link-no-decoration {
+  text-decoration: none;
+  color: rgba(0, 0, 0, 0.87);
+}
+
+.flex {
+  display: flex;
+}
+
+.justify-space-between {
+  justify-content: space-between;
+}
+
+.hover:hover {
+  background-color: rgb(236, 236, 236);
+}
+
+.login-wrapper {
+  padding-top: 20px;
+  background-color: #f1f1f1;
+}
+
+.description-wrapper-warning {
+  padding-top: 20px;
+  background-color: #ffdae0;
+}
+
+.description-wrapper {
+  padding-top: 20px;
+  background-color: #f1f1f1;
+}
+
+.align-left-warning-h3 {
+  color: red;
+  text-align: left;
+  padding: 0 10px 0 24px;
+  margin: 0;
+}
+
+.align-left-warning{
+  color: black;
+  text-align: left;
+  padding: 0 10px 0 24px;
+  margin: 0;
+}
+
+.button-wrapper-warning {
+  padding: 10px 0 10px 24px;
+  display: flex;
+}
+
+.button-wrapper {
+  padding: 10px 0 10px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.logout-button {
+  background-color: black;
+  color: white;
+}
+
+.align-left{
+  text-align: left;
+  padding: 0 10px 0 24px;
+  margin: 0;
+  color: gray;
+}
+
+.align-right{
+  text-align: left;
+  padding: 0 24px 0 10px;
+  margin: 0;
+  color: gray;
+}
+
+.med-size-text {
+  font-size: 16px;
+}
+
+#form-dialog-title {
+  text-align: center;
+}
+
+.table-title {
+  color: rgb(0, 103, 165);
+  font-weight: 800;
+  font-size: 1.5rem;
+  margin: 0;
+}
+
+.grayed-text {
+  color: gray;
+  font-weight: 400;
+  font-size: 16px;
+}
+
+.menu-list-header {
+  text-align: left;
+  padding-left: 10px;
+  color: black;
+}
+
+.big-bold {
+  font-weight: 800;
+  font-size: 24px;
+}
+
+.snackbar-wrapper {
+  background-color: green;
+}
+
+.MuiSnackbarContent-root {
+  background-color: green
+}
+
+.active {
+  background: #eaff79;
+  color: black;
+}
+
+.MuiContainer-maxWidthXl {
+    max-width: 2320px !important;
+}
+
+.blue-text {
+  color: rgb(0, 103, 165);
+  font-size: 42px;
+  font-family: "Times New Roman", Times, serif;
+  font-weight: 600;
+}
+
+.csv-download-button {
+  text-decoration: none;
+  color: rgb(0, 103, 165);
+}
+
+.dialog-actions {
+  display: flex;
+  justify-content: center !important;
+  flex-direction: column !important;
+}
+
+.divider {
+  width: 100%;
+  margin: 20px 0 !important;
+}
+
+.MuiDialog-paper {
+  padding: 0 60px;
+}
+
+.blue-text {
+  color: rgb(0, 103, 165);
+}
+
+.send-email {
+  font-size: 0.875rem;
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  display: block;
+  font-weight: 400;
+}
+
+.send-email-wrapper {
+  display: block;
+  margin-bottom: 20px !important;
+}
+
+.MuiButton-label {
+  display: flex;
+  flex-direction: column;
+}
+
+.buffer {
+  height: 10px;
+}
+
+.flex-row-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.space-between {
+  justify-content: space-between;
+}
+
+.no-wrap {
+  white-space: nowrap;
+}
+
+.form-control {
+  width: 100% !important;
+}
+
+.select-empty {
+  /* margin-bottom: 10px; */
+}
+
+.delete-dialog-tbl {
+  width: 100%;
+}
+
+.delete-dialog-tbl-row {
+
+}
+
+.delete-dialog-tbl-header {
+  font-size: 18px;
+  font-weight: bold;
+  text-align: left;
+  padding-bottom: 12px;
+}
+
+.MuiDialogActions-root {
+  justify-content: space-around !important;
+}
+
+.flex {
+  display: flex;
+}
+
+.column {
+  flex-direction: column;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.space-around {
+  justify-content: space-around;
+}
+
+.margin-bottom {
+  margin-bottom: 12px;
+}
+
+.error-message {
+  font-size: 20px;
+  padding: 8px 36px;
+  background-color: red;
+  color: white;
+  border-radius: 4px;
+  opacity: 0.8;
+}
+
+.left-panel {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.right-panel {
+  width: 20%;
+  padding: 0 10px 10px 0;
+}
+
+.MuiDialog-paper {
+  padding: 20px 40px;
+}
+
+.MuiDialogTitle-root {
+  text-align: center;
 }

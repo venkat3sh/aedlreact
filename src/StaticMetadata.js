@@ -258,6 +258,7 @@ class StaticMetadata extends React.Component {
             margin="normal"
             fullWidth
             disabled={false}
+            required
             name="rqstr_id"
             label="Anthem ID"
             type="rqstr_id"
@@ -337,7 +338,6 @@ class StaticMetadata extends React.Component {
             variant="outlined"
             margin="normal"
             fullWidth
-            required
             disabled={false}
             name="hdfs_delta_tbl_path_txt"
             label="hdfs_delta_tbl_path_txt"
@@ -350,7 +350,6 @@ class StaticMetadata extends React.Component {
             variant="outlined"
             margin="normal"
             fullWidth
-            required
             disabled={false}
             name="hdfs_del_tbl_path_txt"
             label="hdfs_del_tbl_path_txt"
@@ -381,7 +380,6 @@ class StaticMetadata extends React.Component {
             variant="outlined"
             margin="normal"
             fullWidth
-            required
             disabled={false}
             name="destn_s3_bkt_nm"
             label="destn_s3_bkt_nm"
@@ -411,7 +409,6 @@ class StaticMetadata extends React.Component {
             variant="outlined"
             margin="normal"
             fullWidth
-            required
             disabled={false}
             name="tpt_instances_cnt"
             label="tpt_instances_cnt"
