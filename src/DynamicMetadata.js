@@ -45,11 +45,11 @@ class DynamicMetadata extends React.Component {
 
   componentDidMount() {        
     this.setState({
-        dsrc_clmn_list_file_txt: "na",
+        src_clmn_list_file_txt: "na",
         delta_tbl_clmn_lst_txt: "na",
         domain_cd: "prod",
         sor_cd: "cii",            
-        dschma_nm: "Schema Name"
+        schma_nm: "Schema Name"
     })        
     }
 
@@ -198,9 +198,9 @@ class DynamicMetadata extends React.Component {
 
     let newData = {
         src_sys_nm: this.state.sor_cd,
-        schma_nm: this.state.dschma_nm,
+        schma_nm: this.state.schma_nm,
         src_tbl_list: [this.state.src_tbl_list],
-        src_clmn_list_file_txt: this.state.dsrc_clmn_list_file_txt,
+        src_clmn_list_file_txt: this.state.src_clmn_list_file_txt,
         delta_tbl_clmn_lst_txt: this.state.delta_tbl_clmn_lst_txt,
         rqstr_id: this.state.rqstr_id,
         ownrshp_team: this.state.ownrshp_team
@@ -315,14 +315,14 @@ class DynamicMetadata extends React.Component {
             fullWidth
             required
             disabled={false}
-            name="dschma_nm"
-            label="dschma_nm"
-            type="dschma_nm"
-            id="dschma_nm"
-            value={this.state.dschma_nm}
+            name="schma_nm"
+            label="schma_nm"
+            type="schma_nm"
+            id="schma_nm"
+            value={this.state.schma_nm}
             onChange={this.handleChanges}
-            error={this.state.dschma_nm === ""}
-            helperText={this.state.dschma_nm === "" ? "Must have a schema name" : ""}
+            error={this.state.schma_nm === ""}
+            helperText={this.state.schma_nm === "" ? "Must have a schema name" : ""}
             />          
             <TextField
             variant="outlined"
@@ -344,11 +344,11 @@ class DynamicMetadata extends React.Component {
             margin="normal"
             fullWidth
             disabled={false}
-            name="dsrc_clmn_list_file_txt"
-            label="dsrc_clmn_list_file_txt"
-            type="dsrc_clmn_list_file_txt"
-            id="dsrc_clmn_list_file_txt"
-            value={this.state.dsrc_clmn_list_file_txt}
+            name="src_clmn_list_file_txt"
+            label="src_clmn_list_file_txt"
+            type="src_clmn_list_file_txt"
+            id="src_clmn_list_file_txt"
+            value={this.state.src_clmn_list_file_txt}
             onChange={this.handleChanges}
             />            
              <TextField
