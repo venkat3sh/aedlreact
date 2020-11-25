@@ -199,7 +199,7 @@ class DynamicMetadata extends React.Component {
     let newData = {
         src_sys_nm: this.state.sor_cd,
         schma_nm: this.state.dschma_nm,
-        src_tbl_list: this.state.src_tbl_list,
+        src_tbl_list: [this.state.src_tbl_list],
         src_clmn_list_file_txt: this.state.dsrc_clmn_list_file_txt,
         delta_tbl_clmn_lst_txt: this.state.delta_tbl_clmn_lst_txt,
         rqstr_id: this.state.rqstr_id,
