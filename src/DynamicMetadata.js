@@ -203,7 +203,8 @@ class DynamicMetadata extends React.Component {
         src_clmn_list_file_txt: this.state.src_clmn_list_file_txt,
         delta_tbl_clmn_lst_txt: this.state.delta_tbl_clmn_lst_txt,
         rqstr_id: this.state.rqstr_id,
-        ownrshp_team: this.state.ownrshp_team
+        ownrshp_team: this.state.ownrshp_team,
+        domain_cd: this.state.domain_cd
     }
 
     console.log(newData);
