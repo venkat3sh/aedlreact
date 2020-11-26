@@ -33,7 +33,7 @@ class DynamicMetadata extends React.Component {
       selected_job_type: "glue",
       errorInvalidJSON: "",
       rqstr_id: "",
-      domain_cd: "Domain Code 1",
+      domain_cd: "prod",
       sor_cd: "cii", 
       ownrshp_team: "Team 1",
       src_tbl_list: "clm",
