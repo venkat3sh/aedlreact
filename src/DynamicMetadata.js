@@ -10,6 +10,8 @@ import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import SuccessSnackbar from './SuccessSnackbar';
+import CSVuploader from './utils/CSVuploader';
+import Typography from '@material-ui/core/Typography';
 
 class DynamicMetadata extends React.Component {
   constructor() {
@@ -233,11 +235,18 @@ class DynamicMetadata extends React.Component {
   }
 
   updateOnInsert = (result) => {
+    if(result.indexOf('csv') > -1){
+        this.setState({
+            src_tbl_list : result
+        })
+        result = result +' Uploaded';
+    }
     this.setState({
       snackbarIsOpen: true,
       responseMessage: result,
       openRequestDialog: false
     })
+    
     // this.getDataFromApi();
   }
 
@@ -340,6 +349,17 @@ class DynamicMetadata extends React.Component {
             error={this.state.src_tbl_list === ""}
             helperText={this.state.src_tbl_list === "" ? "Must have a source table name" : ""}
             />
+            <div>
+                                      <CSVuploader 
+                                        currentEnv={this.props.currentEnv}
+                                        endpoint="vulcan/metadata"
+                                        type="vulcan_metadata"
+                                        updateOnInsert={this.updateOnInsert}
+                                      />
+                                      <Typography variant="body2">
+                                          Upload CSV
+                                      </Typography>
+                                    </div>
            <TextField
             variant="outlined"
             margin="normal"

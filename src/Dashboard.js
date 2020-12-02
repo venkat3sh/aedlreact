@@ -10,6 +10,7 @@ import Grid from '@material-ui/core/Grid';
 import AppBarPlusDrawer from './AppBarPlusDrawer';
 import StaticMetadata from './StaticMetadata';
 import DynamicMetadata from './DynamicMetadata';
+import VulcanMetadata from './VulcanMetadata'
 
 
 const drawerWidth = 240;
@@ -121,6 +122,11 @@ export default function Dashboard( { handleChangeEnv, currentEnv, isLoggedIn }) 
                   <Paper className={fixedHeightPaper}> */}
                     {/* <Chart /> */}
                     {/* <Route exact path='/' component={withRouter(IngestionDailyTable)} /> */}
+                    <Route
+                      path='/vulcan/metadata'
+                      exact
+                      render={(props) => <VulcanMetadata {...props} currentEnv={currentEnv} />}
+                    />
                     <Route
                         path='/metadata/static'
                         exact

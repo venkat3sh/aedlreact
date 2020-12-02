@@ -146,7 +146,7 @@ export default function AppBarPlusDrawer({ handleChangeEnv, currentEnv, isLogged
 
     let mainListItems = (<div>
       <ListSubheader style={{"fontSize": 21, backgroundColor: 'gray', color: 'white'}}>Metadata</ListSubheader>
-      <NavLink to="/home" exact className="link-no-decoration flex">
+      <NavLink to={'/vulcan/metadata'} exact className="link-no-decoration flex">
         <ListItem button>
           <ListItemIcon>
               <TodayTwoTone />
