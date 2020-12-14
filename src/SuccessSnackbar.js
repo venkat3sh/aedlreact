@@ -25,6 +25,7 @@ function SuccessSnackbar( { open, handleSnackbarClose, responseMessage } ) {
             horizontal: 'left',
           }}
           open={open}
+          autoHideDuration={5000}
           onClose={handleClose}
         >
           <SnackbarContent 
