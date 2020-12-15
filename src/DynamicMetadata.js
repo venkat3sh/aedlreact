@@ -12,6 +12,7 @@ import Select from '@material-ui/core/Select';
 import SuccessSnackbar from './SuccessSnackbar';
 import CSVuploader from './utils/CSVuploader';
 import Typography from '@material-ui/core/Typography';
+import axios from 'axios';
 
 class DynamicMetadata extends React.Component {
   constructor() {
@@ -41,7 +42,8 @@ class DynamicMetadata extends React.Component {
       src_tbl_list: "clm",
       dropdown_options: {
         teams: ["Team 1", "Team 2"],
-      }
+      },
+      downloadFile:""
     }
 }
 
@@ -235,6 +237,9 @@ class DynamicMetadata extends React.Component {
   }
 
   updateOnInsert = (result) => {
+    this.setState({
+        downloadFile : result
+    })
     if(result.indexOf('csv') > -1){
         this.setState({
             src_tbl_list : result
@@ -249,6 +254,42 @@ class DynamicMetadata extends React.Component {
     
     // this.getDataFromApi();
   }
+   
+  OnInsert = (result) => {
+    this.setState({
+        downloadFile : result
+    })
+    if(result.indexOf('csv') > -1){
+        result = result +' Uploaded';
+    }
+    this.setState({
+      snackbarIsOpen: true,
+      responseMessage: result,
+      openRequestDialog: false
+    })
+    
+    // this.getDataFromApi();
+  }
+    onFileDownload = () => { 
+        const formData = new FormData(); 
+        formData.append("file", this.state.downloadFile)
+
+        let url = 'https://972nit0yw1.execute-api.us-east-2.amazonaws.com/prod/genpresignedurl?file_name='+ this.state.downloadFile+'&method=get'
+        axios.get(url, formData)
+        .then(result => {
+            axios.get(result.data, formData,{responseType: 'blob'})
+            .then(result => {
+                const url = window.URL.createObjectURL(new Blob([result.data]));
+                const link = document.createElement('a');
+                link.href = url;
+                link.setAttribute('download', 'file.csv');
+                document.body.appendChild(link);
+                link.click();
+            })
+        }).catch(err => {
+            console.log(err)
+        })
+    }; 
 
   render() {    
     let FormFields = 
@@ -411,6 +452,9 @@ class DynamicMetadata extends React.Component {
                     >
                         Insert
                     </Button>
+                    <Button onClick={this.onFileDownload}
+                    disabled={!this.state.downloadFile}>Generate
+                        CSV</Button>
                 <SuccessSnackbar 
                       open={this.state.snackbarIsOpen} 
                       handleSnackbarClose={this.handleSnackbarClose} 

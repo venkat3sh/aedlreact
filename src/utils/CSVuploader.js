@@ -45,7 +45,7 @@ class CSVuploader extends React.Component {
         // Update the formData object 
         formData.append("file", this.state.selectedFile)
 
-        let url = 'https://972nit0yw1.execute-api.us-east-2.amazonaws.com/prod/genpresignedurl?file_name='+this.state.selectedFile.name
+        let url = 'https://972nit0yw1.execute-api.us-east-2.amazonaws.com/prod/genpresignedurl?file_name='+this.state.selectedFile.name+'&method=put'
         axios.get(url, formData)
         .then(result => {
             axios.put(result.data, formData)
