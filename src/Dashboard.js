@@ -8,12 +8,10 @@ import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 // Component Imports
 import AppBarPlusDrawer from './AppBarPlusDrawer';
-import StaticMetadata from './StaticMetadata';
-import DynamicMetadata from './DynamicMetadata';
-import VulcanMetadata from './VulcanMetadata'
+import EditableGrid from './EditableGrid';
 
 
-const drawerWidth = 240;
+const drawerWidth = 300;
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -118,45 +116,24 @@ export default function Dashboard( { handleChangeEnv, currentEnv, isLoggedIn }) 
               {/* Chart */}
               <Switch>
               
-                {/* <Grid item xs={12} md={8} lg={9}>
-                  <Paper className={fixedHeightPaper}> */}
-                    {/* <Chart /> */}
-                    {/* <Route exact path='/' component={withRouter(IngestionDailyTable)} /> */}
+                
                     <Route
-                      path='/vulcan/metadata'
+                      path='/vulcan/editablegrid'
                       exact
-                      render={(props) => <VulcanMetadata {...props} currentEnv={currentEnv} />}
+                      render={(props) => <EditableGrid {...props} currentEnv={currentEnv} />}
                     />
                     <Route
-                        path='/metadata/static'
+                        path='/vulcan/editablegrid'
                         exact
-                        render={(props) => <StaticMetadata {...props} currentEnv={currentEnv} />}
+                        render={(props) => <EditableGrid {...props} currentEnv={currentEnv} />}
                       />
-                      {/* <Route exact path='/login' component={withRouter(RequestVulcanDialog)}/> */}
-                    {/* <WeeklyTable /> */}
-                  {/* </Paper>
-                </Grid> */}
-                {/* Recent Deposits */}
+                      
 
-                {/* <Grid item xs={12} md={4} lg={3}>
-                  <Paper className={fixedHeightPaper}>
-                    <Deposits />
-                  </Paper>
-                </Grid> */}
-
-                {/* Recent Orders */}
-                {/* <Grid item xs={12}>
-                  <Paper className={classes.paper}> */}
-                  <Route
-                        path='/metadata/dynamic'
+                      <Route
+                        path='/vulcan/editablegrid'
                         exact
-                        render={(props) => <DynamicMetadata {...props} currentEnv={currentEnv} />}
-                      />
-                      {/* <Route exact path='/login' component={withRouter(RequestVulcanDialog)}/> */}
-                    {/* <Route exact path='/processing/weekly' component={withRouter(IngestionWeeklyTable)} /> */}
-                                       
-                  {/* </Paper>
-                </Grid> */}
+                        render={(props) => <EditableGrid {...props} currentEnv={currentEnv} />}
+                      />                      
                 
               </Switch>
 

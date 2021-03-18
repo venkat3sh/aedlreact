@@ -51,7 +51,7 @@ code {
   margin: 0;
 }
 
-.align-left-warning{
+.align-left-warning {
   color: black;
   text-align: left;
   padding: 0 10px 0 24px;
@@ -69,19 +69,20 @@ code {
   flex-direction: column;
   align-items: center;
 }
+
 .logout-button {
   background-color: black;
   color: white;
 }
 
-.align-left{
+.align-left {
   text-align: left;
   padding: 0 10px 0 24px;
   margin: 0;
   color: gray;
 }
 
-.align-right{
+.align-right {
   text-align: left;
   padding: 0 24px 0 10px;
   margin: 0;
@@ -134,7 +135,7 @@ code {
 }
 
 .MuiContainer-maxWidthXl {
-    max-width: 2320px !important;
+  max-width: 2320px !important;
 }
 
 .blue-text {
@@ -214,9 +215,7 @@ code {
   width: 100%;
 }
 
-.delete-dialog-tbl-row {
-
-}
+.delete-dialog-tbl-row {}
 
 .delete-dialog-tbl-header {
   font-size: 18px;

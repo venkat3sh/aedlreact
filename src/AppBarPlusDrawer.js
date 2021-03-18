@@ -22,7 +22,7 @@ import TodayTwoTone from '@material-ui/icons/TodayTwoTone';
 import ViewModuleIcon from '@material-ui/icons/ViewModule';
 
 
-const drawerWidth = 240;
+const drawerWidth = 280;
 const scrollBarMargin = 12;
 const drawerWithScrollMargin = drawerWidth + scrollBarMargin
 
@@ -145,32 +145,60 @@ export default function AppBarPlusDrawer({ handleChangeEnv, currentEnv, isLogged
     };
 
     let mainListItems = (<div>
-      <ListSubheader style={{"fontSize": 21, backgroundColor: 'gray', color: 'white'}}>Metadata</ListSubheader>
-      <NavLink to={'/vulcan/metadata'} exact className="link-no-decoration flex">
+      
+      <ListSubheader style={{"fontSize": 21, backgroundColor: 'gray', color: 'white'}}>Generate Metadata</ListSubheader>
+      <NavLink to={'/vulcan/editablegrid'} exact className="link-no-decoration flex">
         <ListItem button>
           <ListItemIcon>
               <TodayTwoTone />
           </ListItemIcon>
-          <ListItemText primary="Grid" />
+          <ListItemText primary="Vulcan metadata generator" />
         </ListItem>
       </NavLink>
-      <NavLink to={'/metadata/static'} className="link-no-decoration flex">
+      
+      <ListSubheader style={{"fontSize": 21, backgroundColor: 'gray', color: 'white'}}>Monitoring</ListSubheader>
+      <NavLink to={'/vulcan/editablegrid'} exact className="link-no-decoration flex">
+        <ListItem button>
+          <ListItemIcon>
+              <TodayTwoTone />
+          </ListItemIcon>
+          <ListItemText primary="EMR" />
+        </ListItem>
+      </NavLink>
+      <NavLink to={'/metadata/editablegrid'} className="link-no-decoration flex">
         <ListItem button>
             <ListItemIcon>
               <DateRangeTwoTone />
             </ListItemIcon>
-            <ListItemText primary="Static Metadata" />
+            <ListItemText primary="Glue" />
         </ListItem>
       </NavLink>
-      <NavLink to={'/metadata/dynamic'} className="link-no-decoration flex">
+      <NavLink to={'/metadata/editablegrid'} className="link-no-decoration flex">
         <ListItem button>
             <ListItemIcon>
               <ViewModuleIcon />
             </ListItemIcon>
-            <ListItemText primary="Dynamic Metadata" />
+            <ListItemText primary="Step Function" />
         </ListItem>
       </NavLink>
-  
+      <NavLink to={'/metadata/editablegrid'} className="link-no-decoration flex">
+        <ListItem button>
+            <ListItemIcon>
+              <ViewModuleIcon />
+            </ListItemIcon>
+            <ListItemText primary="Lambda" />
+        </ListItem>
+      </NavLink>
+
+      <ListSubheader style={{"fontSize": 21, backgroundColor: 'gray', color: 'white'}}>Auditing</ListSubheader>
+      <NavLink to={'/vulcan/editablegrid'} exact className="link-no-decoration flex">
+        <ListItem button>
+          <ListItemIcon>
+              <TodayTwoTone />
+          </ListItemIcon>
+          <ListItemText primary="RDS" />
+        </ListItem>
+      </NavLink>
       
     </div>
   )
