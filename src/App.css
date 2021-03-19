@@ -109,3 +109,11 @@
 .col-sm-6 {
     flex: 0 0 40%;
 }
+
+.form-control {
+  width: 84% !important;
+}
+.modal.show .modal-dialog {
+  transform: none;
+  margin-top: 64px;
+}
