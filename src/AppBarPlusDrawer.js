@@ -157,7 +157,7 @@ export default function AppBarPlusDrawer({ handleChangeEnv, currentEnv, isLogged
       </NavLink>
       
       <ListSubheader style={{"fontSize": 21, backgroundColor: 'gray', color: 'white'}}>Monitoring</ListSubheader>
-      <NavLink to={'/vulcan/editablegrid'} exact className="link-no-decoration flex">
+      <NavLink to={'/metadata/editablegrid2'} exact className="link-no-decoration flex">
         <ListItem button>
           <ListItemIcon>
               <TodayTwoTone />
@@ -165,7 +165,7 @@ export default function AppBarPlusDrawer({ handleChangeEnv, currentEnv, isLogged
           <ListItemText primary="EMR" />
         </ListItem>
       </NavLink>
-      <NavLink to={'/metadata/editablegrid'} className="link-no-decoration flex">
+      <NavLink to={'/metadata/editablegrid3'} className="link-no-decoration flex">
         <ListItem button>
             <ListItemIcon>
               <DateRangeTwoTone />
@@ -173,7 +173,7 @@ export default function AppBarPlusDrawer({ handleChangeEnv, currentEnv, isLogged
             <ListItemText primary="Glue" />
         </ListItem>
       </NavLink>
-      <NavLink to={'/metadata/editablegrid'} className="link-no-decoration flex">
+      <NavLink to={'/metadata/editablegrid4'} className="link-no-decoration flex">
         <ListItem button>
             <ListItemIcon>
               <ViewModuleIcon />
@@ -181,7 +181,7 @@ export default function AppBarPlusDrawer({ handleChangeEnv, currentEnv, isLogged
             <ListItemText primary="Step Function" />
         </ListItem>
       </NavLink>
-      <NavLink to={'/metadata/editablegrid'} className="link-no-decoration flex">
+      <NavLink to={'/metadata/editablegrid5'} className="link-no-decoration flex">
         <ListItem button>
             <ListItemIcon>
               <ViewModuleIcon />
@@ -191,7 +191,7 @@ export default function AppBarPlusDrawer({ handleChangeEnv, currentEnv, isLogged
       </NavLink>
 
       <ListSubheader style={{"fontSize": 21, backgroundColor: 'gray', color: 'white'}}>Auditing</ListSubheader>
-      <NavLink to={'/vulcan/editablegrid'} exact className="link-no-decoration flex">
+      <NavLink to={'/metadata/editablegrid6'} exact className="link-no-decoration flex">
         <ListItem button>
           <ListItemIcon>
               <TodayTwoTone />
