@@ -5,6 +5,7 @@ import InputGroup from 'react-bootstrap/InputGroup';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faInfoCircle } from '@fortawesome/free-solid-svg-icons';
 import 'font-awesome/css/font-awesome.css';
+import './addRowModal.css';
 
 export class AddRowModal extends Component{
     state={
